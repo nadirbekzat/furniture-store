@@ -3,28 +3,34 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Navbar from "@/components/navbar";
 
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.example.com"),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "Treestan - магазин мебели",
-    template: "%s | Treestan - магазин мебели",
+    default: "Магазин мебели | Furniture Store",
+    template: "%s | Магазин мебели",
   },
   description:
     "Современная мебель для дома и офиса: диваны, столы, стулья, шкафы. Доставка и сборка.",
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
-    url: "https://www.example.com/",
+    url: "/", // будет резолвиться относительно metadataBase
     title: "Магазин мебели",
     description: "Современная мебель для дома и офиса. Доставка и сборка.",
     siteName: "Магазин мебели",
     locale: "ru_RU",
+    // при желании добавь дефолтную OG-картинку:
+    // images: [{ url: "/og.png" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Магазин мебели",
     description:
       "Современная мебель для дома и офиса. Доставка и сборка.",
+    // images: ["/og.png"],
   },
   robots: { index: true, follow: true },
 };
